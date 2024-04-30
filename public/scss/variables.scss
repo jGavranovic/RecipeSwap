@@ -1,0 +1,12 @@
+$purple:  #6f42c1;
+$primary: $purple;
+
+$font-size-base: 1rem;
+$font-size-lg: $font-size-base * 1.5;
+
+$new-colors: (
+    "pinky": #e35d6a,
+    "purpy": #8c68cd
+);
+
+$theme-colors: map-merge($theme-colors, $new-colors);

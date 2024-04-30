@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share - RecipeSwap</title>
+    <link rel="stylesheet" href="../public/scss/main.css">
+</head>
+<%- include('includes/header.ejs') -%>
+<body>
+    <div class="container-md justify-content-center">
+        <div class="row text-center">
+            <h1 style="padding-top: 7rem;" class="pb-5">Share a recipe</h1>
+        </div>
+            <form class="" method="post">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-floating pb-2">
+                            <input type="text" id="title" class="form-control" placeholder="Recipe Title" name="title" required>
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="pb-2 input-group">
+                            <input required type="file" class="form-control" id="inputGroupFile02">
+                            <label class="input-group-text" for="inputGroupFile02">Upload image</label>
+                        </div>
+                        <div class="pb-2">
+                            <select name="prepTime" id="prepTime" class="form-select" required>
+                                <option selected value="">Time required</option>
+                                <option value="15">&lt;15 min</option>
+                                <option value="30">30 min</option>
+                                <option value="60">1 hr</option>
+                                <option value="90">1 hr 30 min</option>
+                                <option value="120">&gt;2 hr</option>
+                            </select>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row pb-2">
+                            <div class="col-12 d-flex justify-content-between">
+                                <p style="display:inline;">Tags:</p>
+                                    <input type="checkbox" name="dietaryPrefs[]" id="vegan" class="btn-check">
+                                    <label for="vegan" class="btn btn-outline-success">Vegan</label>
+
+                                    <input type="checkbox" name="dietaryPrefs[]" id="vegetarian" class="btn-check">
+                                    <label for="vegetarian" class="btn btn-outline-success">Vegetarian</label>
+                                
+                                    <input type="checkbox" name="dietaryPrefs[]" id="gluten-free" class="btn-check">
+                                    <label for="gluten-free" class="btn btn-outline-warning">Gluten-free</label>
+                                
+                                    <input type="checkbox" name="dietaryPrefs[]" id="nut-free" class="btn-check">
+                                    <label for="nut-free" class="btn btn-outline-warning">Nut-free</label>
+                                
+                                    <input type="checkbox" name="dietaryPrefs[]" id="dairy-free" class="btn-check">
+                                    <label for="dairy-free" class="btn btn-outline-warning">Dairy-free</label>
+                                
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-12 d-flex justify-content-between">              
+                                    <input type="checkbox" name="ehtnicity[]" id="mediterranean" class="btn-check">
+                                    <label for="mediterranean" class="btn btn-outline-pinky">Mediterranean</label>
+                                
+                                    <input type="checkbox" name="ehtnicity[]" id="mexican" class="btn-check">
+                                    <label for="mexican" class="btn btn-outline-pinky">Mexican</label>
+                                
+                                    <input type="checkbox" name="ehtnicity[]" id="indian" class="btn-check">
+                                    <label for="indian" class="btn btn-outline-pinky">Indian</label>
+                                
+                                    <input type="checkbox" name="ehtnicity[]" id="chinese" class="btn-check">
+                                    <label for="chinese" class="btn btn-outline-pinky">Chinese</label>
+                                
+                                    <input type="checkbox" name="ehtnicity[]" id="middleeast" class="btn-check">
+                                    <label for="middleeast" class="btn btn-outline-pinky">Middle eastern</label>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between">              
+                                    <input type="checkbox" name="meal[]" id="breakfast" class="btn-check">
+                                    <label for="breakfast" class="btn btn-outline-purpy">Breakfast</label>
+                                
+                                    <input type="checkbox" name="meal[]" id="lunch" class="btn-check">
+                                    <label for="lunch" class="btn btn-outline-purpy">Lunch</label>
+                                
+                                    <input type="checkbox" name="meal[]" id="dinner" class="btn-check">
+                                    <label for="dinner" class="btn btn-outline-purpy">Dinner</label>
+                                
+                                    <input type="checkbox" name="meal[]" id="snack" class="btn-check">
+                                    <label for="snack" class="btn btn-outline-purpy">Snack</label>
+                                
+                                    <input type="checkbox" name="meal[]" id="dessert" class="btn-check">
+                                    <label for="dessert" class="btn btn-outline-purpy">Dessert</label>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-floating pb-4">
+                        <textarea required class="form-control" name="ingredients" id="ingredients" style="height:250px;"></textarea>
+                        <label for="ingredients">Ingredients (one per line)</label>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-floating pb-4">
+                        <textarea required class="form-control" name="steps" id="steps" style="height:250px;"></textarea>
+                        <label for="steps">Steps (formatting will persist)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">Share!</button>
+            </div>
+            </form>
+    </div>
+</body>
+</html>

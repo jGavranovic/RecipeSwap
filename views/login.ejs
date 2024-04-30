@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RecipeSwap</title>
+    <link rel="stylesheet" href="../public/scss/main.css">
+    <style>
+        /* this allows the focus border to show properly when the input within is focused */
+.form-floating-focus-test:focus-within {
+  z-index: 3;
+}
+
+.input-group-flex-test > .form-floating {
+  flex-grow: 1;
+}
+
+/* these next two rules help the form-floating to have proper rounding */
+.input-group-test {
+  &:not(.has-validation)>.form-floating:not(:first-child)>:not(.dropdown-toggle):not(.dropdown-menu) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:not(.has-validation)>.form-floating:not(:last-child)>:not(.dropdown-toggle):not(.dropdown-menu) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <%- include('includes/header.ejs') %>
+    <div class="container-md">
+            <div class="row text-center">
+                <h1 style="padding-top: 7rem;" class="pb-5">Login to your account</h1>
+            </div>
+            <form class="col-lg-4 offset-md-4" method="post" action="/login">
+                <div class="form-floating pb-4">
+                    <input type="text" id="username" class="form-control <%= (invalidUsername?'is-invalid':'') %>" placeholder="username" name="username" value="<%=rejectedUsername%>" <%= invalidUsername?'autofocus':''%>>
+                    <label for="username">Username</label>
+                    <div class="invalid-feedback">Username not found</div>
+                </div>
+                <div class="input-group input-group-test input-group-flex-test">
+                    <div class="form-floating form-floating-focus-test">
+                        <input name="password" type="password" id="password" class="form-control <%= (invalidPassword?'is-invalid':'')%>" placeholder="password" required <%= invalidPassword?'autofocus':''%>>
+                        <label for="password">Password</label>
+                    </div>
+                    <button onclick="document.getElementById('password').type = (document.getElementById('password').type == 'password')?'text':'password';"class="btn btn-outline-secondary" type="button" id="togglePassword"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                        </svg>
+                    </button>
+                </div>
+                <% if (invalidPassword) {%><div class="text-danger"><small>Incorrect password</small></div><%}%>
+                <p class="align-self-start"><a href="createaccount" class="link-secondary">Don't have an account? Create one.</a></p>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

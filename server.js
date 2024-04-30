@@ -2,11 +2,17 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const fs = require('fs')
+const fileUpload = require('express-fileupload')
 const session = require('express-session')
 const PORT = 5049;
+
+
+app.use(express.urlencoded())
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50 MB limit
+}));
 app.use(
     express.json(),
-    express.urlencoded(),
     session({
         secret: 'WB5RJI9Rto',
         saveUninitialized: false
@@ -19,9 +25,21 @@ app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/j
 app.use(express.static(path.join(__dirname,'public')))
 app.set('view engine','ejs')
 
+let recipeIDCounter = 1;
+const imagePath = path.join(__dirname, 'data/images')
+
 app.get(/.*/, (req,res,next)=>{
     delete req.session.redirect;
     next()
+})
+app.post('/share',(req,res)=>{
+    req.files.image.mv(path.join(imagePath, `${recipeIDCounter}.${req.files.image.name.split('.')[1]}`))
+    const recipe = req.body
+    recipe.id = recipeIDCounter++
+    let recipes = parseRecipes()
+    recipes.push(recipe)
+    fs.writeFile('data/recipes.json',JSON.stringify(recipes), function () {})
+    res.redirect('../discover')
 })
 
 app.get('/createaccount', (req,res)=>{
@@ -68,7 +86,9 @@ app.get('/logout', (req,res)=>{
     delete req.session.username;
     res.redirect('../login');
 })
-
+app.get('/',(req,res)=>{
+    res.render('discover',{page: 'discover',username:req.session.username})
+})
 app.get('/:page', (req,res)=>{
     res.render(req.params.page, {page: req.params.page, username: req.session.username})
 })
@@ -97,9 +117,13 @@ function validLogin(account){
 function addNewAccount(account){
     const accounts = parseAccounts();
     accounts.push({"username":account.username, "password":account.password})
-    fs.writeFileSync('accounts.json',JSON.stringify(accounts));
+    fs.writeFile('data/accounts.json',JSON.stringify(accounts), () =>{});
 }
 
 function parseAccounts(){
-    return JSON.parse(fs.readFileSync('accounts.json', 'utf8'))
+    return JSON.parse(fs.readFileSync('data/accounts.json', 'utf8'))
+}
+
+function parseRecipes(){
+    return JSON.parse(fs.readFileSync('data/recipes.json', 'utf8'))
 }

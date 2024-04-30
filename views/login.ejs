@@ -37,7 +37,7 @@
             <div class="row text-center">
                 <h1 style="padding-top: 7rem;" class="pb-5">Login to your account</h1>
             </div>
-            <form class="col-lg-4 offset-md-4" method="post" action="/login">
+            <form class="col-lg-4 offset-md-4" method="post" action="/login" enctype="multipart/form-data">
                 <div class="form-floating pb-4">
                     <input type="text" id="username" class="form-control <%= (invalidUsername?'is-invalid':'') %>" placeholder="username" name="username" value="<%=rejectedUsername%>" <%= invalidUsername?'autofocus':''%>>
                     <label for="username">Username</label>

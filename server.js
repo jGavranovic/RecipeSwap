@@ -20,15 +20,15 @@ app.use(
 )
 app.use('/public', express.static(path.join(__dirname,'public')))
 app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/js')))
-
+app.use('/data/images', express.static(path.join(__dirname,'data/images')))
 
 app.use(express.static(path.join(__dirname,'public')))
 app.set('view engine','ejs')
 
-let recipeIDCounter = 1;
+let recipeIDCounter = (parseRecipes().length != 0)?++parseRecipes().slice(-1)[0].id:1;
 const imagePath = path.join(__dirname, 'data/images')
 
-app.get(/.*/, (req,res,next)=>{
+app.get(/.*/, (req,res,next)=> {
     delete req.session.redirect;
     next()
 })
@@ -36,6 +36,7 @@ app.post('/share',(req,res)=>{
     req.files.image.mv(path.join(imagePath, `${recipeIDCounter}.${req.files.image.name.split('.')[1]}`))
     const recipe = req.body
     recipe.id = recipeIDCounter++
+    recipe.user = req.session.username
     let recipes = parseRecipes()
     recipes.push(recipe)
     fs.writeFile('data/recipes.json',JSON.stringify(recipes), function () {})
@@ -87,11 +88,16 @@ app.get('/logout', (req,res)=>{
     res.redirect('../login');
 })
 app.get('/',(req,res)=>{
-    res.render('discover',{page: 'discover',username:req.session.username})
+    res.redirect('../discover')
 })
+app.get('/discover',(req,res)=>{
+    res.render('discover',{page:'discover',username:req.session.username,recipes:parseRecipes()})
+})
+
 app.get('/:page', (req,res)=>{
     res.render(req.params.page, {page: req.params.page, username: req.session.username})
 })
+
 
 
 app.listen(PORT, () => console.log(`App start on port ${PORT}`))

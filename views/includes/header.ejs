@@ -19,9 +19,9 @@
             <a class="nav-link <%= (page=='health')?'active text-white':'' %>" href="health">Health Tips</a>
           </li>
           <% if (username) {%>
-            <li class="nav-item ms-3">
+            <!-- <li class="nav-item ms-3">
               <a class="nav-link <%= (page=='myaccount')?'active text-white':'' %>" href="myaccount">My account</a>
-            </li>
+            </li> -->
             <% } %>
           <li class="nav-item ms-3">
             <a class="nav-link <%= (page=='login')?'active text-white':'' %>" href="<%= username?'logout':'login'%>"><%= username?'Logout':'Login'%></a>

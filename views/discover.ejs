@@ -19,78 +19,73 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filters">Filters</button>
                     </h2>
                     <div class="accordion-collapse collapse" id="filters" data-bs-parent="#accordion">
-                        <form name="filters">
+                        <form name="filters" onchange="filterCards()">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col d-flex flex-wrap justify-content-start justify-content-md-start">
-                                       <!-- <button class="btn btn-outline-success" data-bs-toggle="button">Vegan</button>
-                                       <button class="btn btn-outline-success" data-bs-toggle="button">Vegetarian</button>
-                                       <button class="btn btn-outline-warning" data-bs-toggle="button">Gluten-free</button>
-                                       <button class="btn btn-outline-warning" data-bs-toggle="button">Nut-free</button>
-                                       <button class="btn btn-outline-warning" data-bs-toggle="button">Dairy-free</button> -->
-                                       <input type="checkbox" name="dietaryPrefs[]" id="vegan" class="btn-check" value="vegan">
+                                        <input type="checkbox" name="tags[]" id="vegan" class="btn-check" value="vegan">
                                         <label for="vegan" class="btn btn-outline-success m-1">Vegan</label>
-                                        <input type="checkbox" name="dietaryPrefs[]" id="vegetarian" class="btn-check" value="vegetarian">
+                                        <input type="checkbox" name="tags[]" id="vegetarian" class="btn-check" value="vegetarian">
                                         <label for="vegetarian" class="btn btn-outline-success m-1">Vegetarian</label>
                             
-                                        <input type="checkbox" name="dietaryPrefs[]" id="gluten-free" class="btn-check" value="gluten-free">
+                                        <input type="checkbox" name="tags[]" id="gluten-free" class="btn-check" value="gluten-free">
                                         <label for="gluten-free" class="btn btn-outline-warning m-1">Gluten-free</label>
                             
-                                        <input type="checkbox" name="dietaryPrefs[]" id="nut-free" class="btn-check" value="nut-free">
+                                        <input type="checkbox" name="tags[]" id="nut-free" class="btn-check" value="nut-free">
                                         <label for="nut-free" class="btn btn-outline-warning m-1">Nut-free</label>
                             
-                                        <input type="checkbox" name="dietaryPrefs[]" id="dairy-free" class="btn-check" value="dairy-free">
+                                        <input type="checkbox" name="tags[]" id="dairy-free" class="btn-check" value="dairy-free">
                                         <label for="dairy-free" class="btn btn-outline-warning m-1">Dairy-free</label>
                                     </div>
-                                    <div class="col d-flex flex-wrap justify-content-md- justify-content-start">
-                                        <input type="checkbox" name="ehtnicity[]" id="mediterranean" class="btn-check" value="mediterranean">
+                                    <div class="col d-flex flex-wrap justify-content-md-end justify-content-start">
+                                        <input type="checkbox" name="tags[]" id="mediterranean" class="btn-check" value="mediterranean">
                                         <label for="mediterranean" class="btn btn-outline-pinky m-1">Mediterranean</label>
                             
-                                        <input type="checkbox" name="ehtnicity[]" id="mexican" class="btn-check" value="mexican">
+                                        <input type="checkbox" name="tags[]" id="mexican" class="btn-check" value="mexican">
                                         <label for="mexican" class="btn btn-outline-pinky m-1">Mexican</label>
                             
-                                        <input type="checkbox" name="ehtnicity[]" id="indian" class="btn-check" value="indian">
+                                        <input type="checkbox" name="tags[]" id="indian" class="btn-check" value="indian">
                                         <label for="indian" class="btn btn-outline-pinky m-1">Indian</label>
                             
-                                        <input type="checkbox" name="ehtnicity[]" id="chinese" class="btn-check" value="chinese">
+                                        <input type="checkbox" name="tags[]" id="chinese" class="btn-check" value="chinese">
                                         <label for="chinese" class="btn btn-outline-pinky m-1">Chinese</label>
                             
-                                        <input type="checkbox" name="ehtnicity[]" id="middleeast" class="btn-check" value="middleeast">
+                                        <input type="checkbox" name="tags[]" id="middleeast" class="btn-check" value="middleeast">
                                         <label for="middleeast" class="btn btn-outline-pinky m-1">Middle eastern</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col d-flex flex-wrap justify-content-md-start justify-content-start">
-                                        <input type="checkbox" name="meal[]" id="breakfast" class="btn-check" value="breakfast">
+                                        <input type="checkbox" name="tags[]" id="breakfast" class="btn-check" value="breakfast">
                                         <label for="breakfast" class="btn btn-outline-purpy m-1">Breakfast</label>
                             
-                                        <input type="checkbox" name="meal[]" id="lunch" class="btn-check" value="lunch">
+                                        <input type="checkbox" name="tags[]" id="lunch" class="btn-check" value="lunch">
                                         <label for="lunch" class="btn btn-outline-purpy m-1">Lunch</label>
                             
-                                        <input type="checkbox" name="meal[]" id="dinner" class="btn-check" value="dinner">
+                                        <input type="checkbox" name="tags[]" id="dinner" class="btn-check" value="dinner">
                                         <label for="dinner" class="btn btn-outline-purpy m-1">Dinner</label>
                             
-                                        <input type="checkbox" name="meal[]" id="snack" class="btn-check" value="snack">
+                                        <input type="checkbox" name="tags[]" id="snack" class="btn-check" value="snack">
                                         <label for="snack" class="btn btn-outline-purpy m-1">Snack</label>
                             
-                                        <input type="checkbox" name="meal[]" id="dessert" class="btn-check" value="dessert">
+                                        <input type="checkbox" name="tags[]" id="dessert" class="btn-check" value="dessert">
                                         <label for="dessert" class="btn btn-outline-purpy m-1">Dessert</label>
                                     </div>
                                     <div class="col d-flex flex-wrap justify-content-md-end justify-content-start">
-                                        <input type="radio" name="time" id="15" class="btn-check" value="breakfast">
+                                        <input type="button" id="reset" class="btn-secondary d-none" onclick="resetTime(); this.dispatchEvent(new Event('change', {bubbles:true}))">
+                                        <label for="reset" class="btn btn-outline-secondary m-1">Reset</label>
+
+                                        <input type="radio" name="time" id="15" class="btn-check" value="15">
                                         <label for="15" class="btn btn-outline-secondary m-1">&lt;15 min</label>
                             
-                                        <input type="radio" name="time" id="30" class="btn-check" value="lunch">
+                                        <input type="radio" name="time" id="30" class="btn-check" value="30">
                                         <label for="30" class="btn btn-outline-secondary m-1">&lt;30 min</label>
                             
-                                        <input type="radio" name="time" id="60" class="btn-check" value="dinner">
+                                        <input type="radio" name="time" id="60" class="btn-check" value="60">
                                         <label for="60" class="btn btn-outline-secondary m-1">&lt; 1 hr</label>
                             
-                                        <input type="radio" name="time" id="90" class="btn-check" value="snack">
+                                        <input type="radio" name="time" id="90" class="btn-check" value="90">
                                         <label for="90" class="btn btn-outline-secondary m-1">&lt; 1 hr 30 min</label>
-                            
-                                        <!-- <input type="radio" name="time" id="120" class="btn-check" value="dessert">
-                                        <label for="120" class="btn btn-outline-purpy m-1"></label> -->
                                     </div>
                                 </div>
                             </div>
@@ -100,29 +95,18 @@
             </div>
         </div>
         <div class="row row-cols-md-auto d-flex justify-content-center text-center">
+            <% recipes.forEach(recipe => { %>
             <div class="col pb-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <a href="">
-                        <img src="../data/images/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Card title</h5>
-                        </div>
-                    </a>
+                <div class="card" style="width: 18rem;" data-tags="<%=recipe['tags[]'] %>" data-time="<%= recipe['prepTime']%>">
+                    <a style="text-decoration:none;color:black;" href="<%=`/recipe/${recipe.id}`%>"><img src="<%= `/data/images/${recipe.imageName}` %>" class="card-img-top" alt=""></a>
+                    <div class="card-body text-center d-flex align-items-center justify-content-center">
+                        <h5 class="card-title"><a style="text-decoration:none;color:black;" href="<%=`/recipe/${recipe.id}`%>"><%= recipe.title %></a></h5>
+                    </div>
                 </div>
-            </div>
-            <div class="col pb-3 d-flex justify-content-center" >
+            </div> <% }) %>
+            <!-- <div class="col pb-3 d-flex justify-content-center" >
                 <div class="card" style="width: 18rem;">
-                    <a href="">
-                        <img src="../data/images/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Card title</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col pb-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <a href="">
+                    <a  style="text-decoration:none;color:black;" href="">
                         <img src="../data/images/1.jpg" class="card-img-top" alt="">
                         <div class="card-body text-center">
                             <h5 class="card-title">Card title</h5>
@@ -132,7 +116,7 @@
             </div>
             <div class="col pb-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <a href="">
+                    <a  style="text-decoration:none;color:black;"href="">
                         <img src="../data/images/1.jpg" class="card-img-top" alt="">
                         <div class="card-body text-center">
                             <h5 class="card-title">Card title</h5>
@@ -142,7 +126,7 @@
             </div>
             <div class="col pb-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <a href="">
+                    <a  style="text-decoration:none;color:black;"href="">
                         <img src="../data/images/1.jpg" class="card-img-top" alt="">
                         <div class="card-body text-center">
                             <h5 class="card-title">Card title</h5>
@@ -152,7 +136,7 @@
             </div>
             <div class="col pb-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <a href="">
+                    <a  style="text-decoration:none;color:black;"href="">
                         <img src="../data/images/1.jpg" class="card-img-top" alt="">
                         <div class="card-body text-center">
                             <h5 class="card-title">Card title</h5>
@@ -160,9 +144,45 @@
                     </a>
                 </div>
             </div>
+            <div class="col pb-3 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <a  style="text-decoration:none;color:black;"href="">
+                        <img src="../data/images/1.jpg" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Card title</h5>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
         </div>
         
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function resetTime(){
+            const radios = document.getElementsByName('time')
+            for (i=0;i<radios.length;i++)
+                radios[i].checked = false  
+        }
+
+        function filterCards(){
+            
+            const tags = []
+            document.filters.elements['tags[]'].forEach(tag => {
+                if (tag.checked)
+                    tags.push(tag.value)
+            })
+            const cards = Array.from(document.getElementsByClassName('card'))
+            cards.forEach((card)=>{
+                if (tags.every((e) => {
+                    return card.dataset.tags.split(',').includes(e)
+                }) && (document.filters.elements.time.value == '' || parseInt(card.dataset.time) <= document.filters.elements.time.value))
+                    card.classList.remove('d-none')
+                else
+                    card.classList.add('d-none')
+            })
+        }
+        
+    </script>
 </body>
 </html>

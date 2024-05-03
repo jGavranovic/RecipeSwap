@@ -35,10 +35,11 @@ app.get(/.*/, (req,res,next)=> {
 app.post('/share',(req,res)=>{
     req.files.image.mv(path.join(imagePath, `${recipeIDCounter}.${req.files.image.name.split('.')[1]}`))
     const recipe = req.body
-    recipe.id = recipeIDCounter++
+    recipe.imageName = `${recipeIDCounter}.${req.files.image.name.split('.')[1]}`
     recipe.user = req.session.username
+    recipe.id = recipeIDCounter++
     let recipes = parseRecipes()
-    recipes.push(recipe)
+    recipes.unshift(recipe)
     fs.writeFile('data/recipes.json',JSON.stringify(recipes), function () {})
     res.redirect('../discover')
 })
@@ -92,6 +93,9 @@ app.get('/',(req,res)=>{
 })
 app.get('/discover',(req,res)=>{
     res.render('discover',{page:'discover',username:req.session.username,recipes:parseRecipes()})
+})
+app.get('/recipe/:id',(req,res)=>{
+    res.send('hij');res.end();
 })
 
 app.get('/:page', (req,res)=>{

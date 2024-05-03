@@ -95,7 +95,13 @@ app.get('/discover',(req,res)=>{
     res.render('discover',{page:'discover',username:req.session.username,recipes:parseRecipes()})
 })
 app.get('/recipe/:id',(req,res)=>{
-    res.send('hij');res.end();
+    const recipes = parseRecipes()
+    var recipe;
+    for (i=0;i<recipes.length;i++){
+        if (recipes[i].id==req.params.id)
+            {recipe = recipes[i];break;}
+    }
+    res.render('recipe', {page:'discover',username:req.session.username,recipe:recipe})
 })
 
 app.get('/:page', (req,res)=>{

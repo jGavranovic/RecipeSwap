@@ -14,8 +14,8 @@
             <h1 class="display-3 pb-5" style="text-align:center;"><%= recipe.title %></h1>
         </div>
         <div class="row col-lg-8 offset-lg-2">
-            <img src="<%= `/data/images/${recipe.imageName}` %>" alt="" class="img-fluid pb-5">
-            
+            <div class="col-md-6"><img src="<%= `/data/images/${recipe.imageName}` %>" alt="" class="img-fluid pb-5" ></div>
+            <div class="col-md-6">Ingredients</div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -7,16 +7,16 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarText">
         <ul class="navbar-nav nav-pills">
           <li class="nav-item ms-3">
-            <a class="nav-link <%= (page=='discover')?'active text-white':'' %>" href="discover">Discover</a>
+            <a class="nav-link <%= (page=='discover')?'active text-white':'' %>" href="/discover">Discover</a>
           </li>
           <li class="nav-item ms-3">
-            <a class="nav-link <%= (page=='share')?'active text-white':'' %>" href="share">Share</a>
+            <a class="nav-link <%= (page=='share')?'active text-white':'' %>" href="/share">Share</a>
           </li>
           <li class="nav-item ms-3">
-            <a class="nav-link <%= (page=='cooking')?'active text-white':'' %>" href="cooking">Cooking Tips</a>
+            <a class="nav-link <%= (page=='cooking')?'active text-white':'' %>" href="/cooking">Cooking Tips</a>
           </li>
           <li class="nav-item ms-3">
-            <a class="nav-link <%= (page=='health')?'active text-white':'' %>" href="health">Health Tips</a>
+            <a class="nav-link <%= (page=='health')?'active text-white':'' %>" href="/health">Health Tips</a>
           </li>
           <% if (username) {%>
             <!-- <li class="nav-item ms-3">
@@ -24,7 +24,7 @@
             </li> -->
             <% } %>
           <li class="nav-item ms-3">
-            <a class="nav-link <%= (page=='login')?'active text-white':'' %>" href="<%= username?'logout':'login'%>"><%= username?'Logout':'Login'%></a>
+            <a class="nav-link <%= (page=='login')?'active text-white':'' %>" href="/<%= username?'logout':'login'%>"><%= username?'Logout':'Login'%></a>
           </li>
         </ul>
         <!-- <%= page %> -->

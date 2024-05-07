@@ -52,7 +52,7 @@ app.post('/createaccount', (req,res)=>{
     if (!usernameExists(account)){
         addNewAccount(account)
         req.session.username = account.username;
-        res.redirect('../myaccount')
+        res.redirect('../discover')
 
     }else {
         res.render('createaccount',{page:'login', username:req.session.username, invalidUsername: true, rejectedUsername: account.username})
@@ -70,7 +70,7 @@ app.post('/login', (req,res)=>{
         if (req.session.redirect)
             res.redirect('../share');
         else
-            res.redirect('../myaccount')
+            res.redirect('../discover')
     }else {
         res.render('login', {page:'login', username:req.session.username, invalidUsername: false, invalidPassword: true, rejectedUsername: account.username})
     }

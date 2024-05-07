@@ -18,15 +18,17 @@ app.use(
         saveUninitialized: false
     })
 )
+
+app.get('/test', (req,res)=> res.send(path.join(__dirname,'/data/images')))
 app.use('/public', express.static(path.join(__dirname,'public')))
 app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/js')))
-app.use('/data/images', express.static(path.join(__dirname,'data/images')))
+app.use('/data', express.static(path.join(__dirname,'data')))
 
 app.use(express.static(path.join(__dirname,'public')))
 app.set('view engine','ejs')
 
 let recipeIDCounter = (parseRecipes().length != 0)?++parseRecipes().slice(-1)[0].id:1;
-const imagePath = path.join(__dirname, 'data/images')
+const imagePath = path.join(__dirname, '/data/images')
 
 app.get(/.*/, (req,res,next)=> {
     delete req.session.redirect;

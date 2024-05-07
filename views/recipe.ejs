@@ -15,9 +15,70 @@
         </div>
         <div class="row col-lg-8 offset-lg-2">
             <div class="col-md-6"><img src="<%= `/data/images/${recipe.imageName}` %>" alt="" class="img-fluid pb-5" ></div>
-            <div class="col-md-6">Ingredients</div>
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+                <div class="row pb-1"><p></p></div>
+                <div class="row pb-1"><p style='font-size: larger;' id="user"></p></div>
+                <div class="row pb-1"><p style="font-size: larger;" id="timeRequired"><strong id="timeRequired"></strong></p></div>
+                <div class="row pb-1"><p style="font-size: larger;"><strong>Tags: </strong><span id="tags"></span></p></div>
+            </div>
         </div>
+        <div class="row col-lg-8 offset-lg-2">
+            <h2 >Ingredients</h2>
+        </div>
+        <div class="row col-lg-8 offset-lg-2 pb-2">
+            <ul>
+            <% let ingredients = recipe.ingredients.split('\r\n'); ingredients.forEach(ingredient => {%>
+                <li><%=ingredient%></li><% })%>
+            </ul>
+        </div>
+        <div class="row col-lg-8 offset-lg-2">
+            <h2 >Steps</h2>
+        </div>
+        <div class="row col-lg-8 offset-lg-2">
+            <p><%- recipe.steps.replace(/\r\n/g, '<br>')%></p>
+        </div>
+        
     </div>
+    <script>
+    function parseTime(prepTime){
+        switch (prepTime){
+            case '15': return '15 minutes';
+            case '30': return '30 minutes';
+            case '60': return '1 hour';
+            case '90': return '1 hour 30 minutes';
+            case '120': return '2+ hours';
+        }
+    }
+    function createTags(tags){
+        let output=''
+
+        if (tags.includes('vegan')) output+='<button class="btn btn-success">Vegan</button>';
+        if (tags.includes('vegetarian')) output+= '<button class="btn btn-success m-2">Vegetarian</button>';
+        if (tags.includes('gluten-free')) output+= '<button class="btn btn-warning m-2">Gluten free</button>';
+        if (tags.includes('nut-free')) output+= '<button class="btn btn-warning m-2">Nut free</button>';
+        if (tags.includes('dairy-free')) output+= '<button class="btn btn-warning m-2">Dairy free</button>';
+
+        if (tags.includes('mediterranean')) output+= '<button class="btn btn-pinky m-2">Mediterranean</button>';
+        if (tags.includes('mexican')) output+= '<button class="btn btn-pinky m-2">Mexican</button>';
+        if (tags.includes('indian')) output+= '<button class="btn btn-pinky m-2">Indian</button>';
+        if (tags.includes('chinese')) output+= '<button class="btn btn-pinky m-2">Chinese</button>';
+        if (tags.includes('mieddleeast')) output+= '<button class="btn btn-pinky m-2">Middle East</button>';
+
+        if (tags.includes('breakfast')) output+= '<button class="btn btn-purpy m-2">Breakfast</button>';
+        if (tags.includes('lunch')) output+= '<button class="btn btn-purpy m-2">Lunch</button>';
+        if (tags.includes('dinner')) output+= '<button class="btn btn-purpy m-2">Dinner</button>';
+        if (tags.includes('snack')) output+= '<button class="btn btn-purpy m-2">Snack</button>';
+        if (tags.includes('dessert')) output+= '<button class="btn btn-purpy m-2">Dessert</button>';
+        
+        return output
+    }
+    recipe = <%- JSON.stringify(recipe) %>;
+
+
+    document.getElementById('timeRequired').innerHTML = '<strong>Time required:</strong> ' + parseTime(recipe.prepTime);
+    document.getElementById('user').innerHTML = '<strong>Uploaded by:</strong> '+recipe.user;
+    document.getElementById('tags').innerHTML = createTags(recipe['tags[]'])
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

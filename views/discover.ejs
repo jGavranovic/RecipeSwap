@@ -182,7 +182,11 @@
                 else
                     card.classList.add('d-none')
             })
+
+            
         }
+        function reveal () { document.getElementsByClassName('accordion-button')[0].dispatchEvent(new Event('click'))}
+        setTimeout(reveal,2000)
         
     </script>
 </body>
